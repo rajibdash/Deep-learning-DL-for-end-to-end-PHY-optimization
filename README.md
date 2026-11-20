@@ -6,6 +6,12 @@ Can we do AE (autoencoder) implementation with lower training and processing com
 AE architecture to implement E2E learning of coded systems in which we can have shown better __BER performance__ than the
 baseline model of a conventional communications system implementation. 
 
+What is deployment challenges? - Comutational complexity, latency due to strict timing budgets for UL/Dl PHY processing, what 3GPP standardization says for OTA training protocols and feedback loops?  
+
+Specific architectures e.g., Turbo Autoencoders, OFDM-AE, MIMO beamforming, or semantic PHY?
+
+what OTA training techniques needed for real HW? 
+
 # Pseducode with TensorFlow
 Here is a complete, runnable TensorFlow 2.x implementation featuring a modular channel layer supporting AWGN, 
 Rayleigh Fading, 2x2 MIMO, and OFDM, along with integrated Matplotlib visualization scripts for learned 
