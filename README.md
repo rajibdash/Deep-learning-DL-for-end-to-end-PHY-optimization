@@ -1,6 +1,10 @@
 # Deep learning for end-to-end PHY optimization
 A full investigation, proposals, optimization, pros n cons, benefits and scalability with DL for Physical Layer
 
+# Thoughts
+Can we do AE (autoencoder) implementation with lower training and processing complexity? which means a novel low complexity 
+AE architecture to implement E2E learning of coded systems in which we can have shown better __BER performance__ than the
+baseline model of a conventional communications system implementation. 
 
 # Pseducode with TensorFlow
 Here is a complete, runnable TensorFlow 2.x implementation featuring a modular channel layer supporting AWGN, 
