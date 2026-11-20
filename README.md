@@ -64,7 +64,15 @@ class WirelessChannelLayer(tf.keras.layers.Layer):
             n_mimo = tf.reshape(noise, (batch_size, n_complex // 2, 2, 1))
             y_mimo = tf.matmul(H, x_mimo) + n_mimo
             # Zero-Forcing (ZF) Equalization: H^+ * y
-            H_pinv = tf.linalg.pinv(H)
+            # H_pinv = tf.linalg.pinv(H)
+            # Add tiny diagonal regularization (1e-6) to prevent singular matrix errors
+            eps = tf.cast(1e-6, H.dtype) * tf.eye(tf.shape(H)[-1], dtype=H.dtype)
+            H_pinv = tf.linalg.inv(H + eps)
+            # Formula: (H^H * H + eps*I)^(-1) * H^H
+            # H_H = tf.linalg.adjoint(H)
+            # gram = tf.matmul(H_H, H)
+            # eps = tf.cast(1e-6, H.dtype) * tf.eye(tf.shape(gram)[-1], dtype=H.dtype)
+            # H_pinv = tf.matmul(tf.linalg.inv(gram + eps), H_H)
             y_eq = tf.matmul(H_pinv, y_mimo)
             y_complex = tf.reshape(y_eq, (batch_size, n_complex))
 
@@ -124,7 +132,7 @@ class TFCommunicationAutoencoder(tf.keras.Model):
 
     def call(self, one_hot_x, eb_no_db=10.0):
         tx = self.encode(one_hot_x)
-        rx = self.channel(tx, eb_no_db)
+        rx = self.channel(tx, eb_no_db=eb_no_db)
         return self.decode(rx)
 
 # 4. Training Function
