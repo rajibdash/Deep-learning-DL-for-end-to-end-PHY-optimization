@@ -220,6 +220,13 @@ plt.show()
 
 ```
 
+## Output of the TensorFlow Script
+
+Example output of the script above: BLER vs. Eb/No curves for the four channel models (left) and the learned
+constellations of the AWGN and Rayleigh autoencoders on the first complex channel use (right).
+
+![BLER vs. Eb/No curves and learned constellations produced by the TensorFlow script](Figure_1.png)
+
 ## Key Additions in this TensorFlow Script
 
 * Complex-Valued Signal Flow (tf.complex): Real and imaginary neural network outputs are converted into true complex tensors (I + jQ).
